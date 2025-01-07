@@ -23,4 +23,6 @@ carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rat
 
 # print([b for b in books.find({"author": "Dante", "copies.go": {"$in": [1, 2, 3]}})])
 # print(*books.find({"author": "Kristo"}))
-print([b for b in books.find({"_id": ObjectId('645fcad776c659ebddbdd80d')})])
+# print([b for b in books.find({"_id": ObjectId('645fcad776c659ebddbdd80d')})])
+
+print([b for b in books.find({"gender": {"$gt": 1}})])
