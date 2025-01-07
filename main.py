@@ -1,6 +1,7 @@
 # Start with Python to MongoDB connection
 from pymongo import MongoClient
 from bson import ObjectId
+from bson.son import SON
 
 # client = MongoClient("localhost", 27017)
 client = MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000")
@@ -29,4 +30,25 @@ carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rat
 # print([b for b in books.find({"gender": {"$gt": 1}})])
 # print(books.count_documents({"gender": {"$gt": 1}}))
 
-books.update_one({"_id": ObjectId("6460300076c659ebddbdd81c")}, {"$set": {"name": "Sophia_2"}})
+# books.update_one({"_id": ObjectId("6460300076c659ebddbdd81c")}, {"$set": {"name": "Sophia_2"}})
+# books.delete_many({"_id": {"$in": [ObjectId("6460300076c659ebddbdd830"),
+#                                   ObjectId("6460300076c659ebddbdd832")]}})
+
+pipeline = [
+    {
+        "$group": {
+            # "_id": "$name",
+            "_id": "gender",
+            "averageGender": {"$avg": "$gender"}
+        }
+    },
+    {
+        "$sort": SON([("averageGender", -1), ("_id", -1)])
+    }
+]
+
+results = books.aggregate(pipeline)
+
+# for result in results:
+#     print(f"Result: {result}")
+print(*results)
