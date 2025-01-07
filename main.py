@@ -15,7 +15,10 @@ books = db.books
 carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rating": 7, "genres":
                             ["Musical"]}).inserted_id
 
-for book in books.find():
-    print(f"Book: {book}")
+# for book in books.find():
+#     print(f"Book: {book}")
+#
+# print(f"ID just inserted: {carla_id}")
 
-print(f"ID just inserted: {carla_id}")
+print([b for b in books.find({"author": "Dante"})])
+
