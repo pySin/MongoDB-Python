@@ -38,13 +38,14 @@ pipeline = [
     {
         "$group": {
             # "_id": "$name",
-            "_id": "gender",
+            "_id": "$location",
             "averageGender": {"$avg": "$gender"}
         }
-    },
-    {
-        "$sort": SON([("averageGender", -1), ("_id", -1)])
     }
+    # {
+        # "$sort": SON([("averageGender", -1), ("_id", -1)])
+    #     "$sort": SON([("averageGender", -1)])
+    # }
 ]
 
 results = books.aggregate(pipeline)
