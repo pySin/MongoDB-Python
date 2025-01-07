@@ -25,4 +25,8 @@ carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rat
 # print(*books.find({"author": "Kristo"}))
 # print([b for b in books.find({"_id": ObjectId('645fcad776c659ebddbdd80d')})])
 
-print([b for b in books.find({"gender": {"$gt": 1}})])
+# print([b for b in books.find({"gender": {"$gt": 1}})])
+# print([b for b in books.find({"gender": {"$gt": 1}})])
+# print(books.count_documents({"gender": {"$gt": 1}}))
+
+books.update_one({"_id": ObjectId("6460300076c659ebddbdd81c")}, {"$set": {"name": "Sophia_2"}})
