@@ -20,5 +20,5 @@ carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rat
 #
 # print(f"ID just inserted: {carla_id}")
 
-print([b for b in books.find({"author": "Dante"})])
+print([b for b in books.find({"author": "Dante", "copies.go": {"$in": [1, 2, 3]}})])
 
