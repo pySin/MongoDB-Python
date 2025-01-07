@@ -1,5 +1,6 @@
 # Start with Python to MongoDB connection
 from pymongo import MongoClient
+from bson import ObjectId
 
 # client = MongoClient("localhost", 27017)
 client = MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000")
@@ -21,5 +22,5 @@ carla_id = books.insert_one({"title": "New Mamma", "author": "Carla Sveda", "rat
 # print(f"ID just inserted: {carla_id}")
 
 # print([b for b in books.find({"author": "Dante", "copies.go": {"$in": [1, 2, 3]}})])
-print(*books.find({"author": "Kristo"}))
-
+# print(*books.find({"author": "Kristo"}))
+print([b for b in books.find({"_id": ObjectId('645fcad776c659ebddbdd80d')})])
