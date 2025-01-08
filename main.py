@@ -38,10 +38,11 @@ pipeline = [
     {
         "$group": {
             # "_id": "$name",
-            "_id": "$location",  # Divide the results by location groups
-            "averageGender": {"$avg": "$gender"}
+            "_id": "$location",  # Divide the results by location groups. Grouped by what?
+            "averageGender": {"$avg": "$gender"}  # The aggregation itself
         }
     }
+
     # {
         # "$sort": SON([("averageGender", -1), ("_id", -1)])
     #     "$sort": SON([("averageGender", -1)])
@@ -60,3 +61,23 @@ books.update_one(
 )
 
 print("Record updated!")
+
+# --
+
+pipeline_2 = [
+    {
+        "$match": {
+            "id": {"$gt": 3046}
+        }
+    },
+    {
+        "$group": {
+            # "_id": "$name",
+            "_id": "null",  # Divide the results by location groups. Grouped by what?
+            "averageGender": {"$avg": "$gender"}  # The aggregation itself
+        }
+    }
+]
+
+results_2 = books.aggregate(pipeline_2)
+print(*results_2)
