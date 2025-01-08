@@ -38,7 +38,7 @@ pipeline = [
     {
         "$group": {
             # "_id": "$name",
-            "_id": "$location",
+            "_id": "$location",  # Divide the results by location groups
             "averageGender": {"$avg": "$gender"}
         }
     }
