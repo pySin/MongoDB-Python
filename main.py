@@ -53,3 +53,10 @@ results = books.aggregate(pipeline)
 # for result in results:
 #     print(f"Result: {result}")
 print(*results)
+
+books.update_one(
+    {"title": "Super Store"},
+    {"$set": {"author": "Kristo the Second"}}
+)
+
+print("Record updated!")
