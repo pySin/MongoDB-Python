@@ -72,7 +72,6 @@ pipeline_2 = [
     },
     {
         "$group": {
-            # "_id": "$name",
             "_id": "null",  # Divide the results by location groups. Grouped by what?
             "averageGender": {"$avg": "$gender"}  # The aggregation itself
         }
@@ -80,4 +79,5 @@ pipeline_2 = [
 ]
 
 results_2 = books.aggregate(pipeline_2)
+print(results_2)
 print(*results_2)
