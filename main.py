@@ -117,7 +117,7 @@ pipeline_4 = [
         }
     },
     {
-        "$group": {
+        "$group": {  # Don't group and count the pages of books bigger than 120.
             "_id": "null",
             "sumPages": {"$sum": "$Pages"}
         }
