@@ -81,3 +81,24 @@ pipeline_2 = [
 results_2 = books.aggregate(pipeline_2)
 print(results_2)
 print(*results_2)
+
+db_3 = client.Bookstore_12_2024
+books_3 = db_3.books
+
+pipeline_3 = [
+    {
+        "$match": { # Match documents where Pages are grater than 200
+            "Pages": {"$gt": 200}
+        }
+    },
+    {
+        "$group": {
+            "_id": "$Author", # Get the average rating per author for the matching results.
+            "avgRating": {"$avg": "$rating"}
+        }
+    }
+]
+
+results_3 = books_3.aggregate(pipeline_3)
+[print(r) for r in results_3]
+
