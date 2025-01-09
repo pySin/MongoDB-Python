@@ -102,3 +102,29 @@ pipeline_3 = [
 results_3 = books_3.aggregate(pipeline_3)
 [print(r) for r in results_3]
 
+# --
+# Use $sum in aggregation
+
+pipeline_4 = [
+    # {
+    #     "$match": { # Match documents where Pages are grater than 200
+    #         "Pages": {"$gt": 200}
+    #     }
+    # }
+    {
+        "$match": {
+            "Pages": {"$gt": 120}
+        }
+    },
+    {
+        "$group": {
+            "_id": "null",
+            "sumPages": {"$sum": "$Pages"}
+        }
+    }
+]
+
+results_4 = books_3.aggregate(pipeline_4)
+print("Forth")
+print(results_4)
+[print(r) for r in results_4]
