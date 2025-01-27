@@ -9,6 +9,7 @@ client = MongoClient("mongodb://127.0.0.1:27017/?directConnection=true&serverSel
 db = client.bookstore
 books = db.books
 
+# Example inputs
 # books.insert_one({"title": "Big Mamma", "author": "Sammy Some", "rating": 4, "genres":
 #                   ["Drama", "Thriller"]})
 # books.insert_one({"title": "Small Mamma", "author": "Grande Cheritos", "rating": 6, "genres":
